@@ -353,16 +353,18 @@ A = 3; B = 5 -> 243 (3⁵)
 # an = a1 + (n-1) * d.
 # Каждое число вводится с новой строки.
 
-N = int(input('Введите цифру  первого элемента N:'))
-M = int(input('Введите разность первого и второго элемента M:'))
-L = int(input('Введите количество  элементов массива L:'))
+# N = int(input('Введите цифру  первого элемента N:'))
+# M = int(input('Введите разность первого и второго элемента M:'))
+# L = int(input('Введите количество  элементов массива L:'))
     
-arrayA =[N]
+# arrayA =[N]
 
-for i in range(0,L-1):
-    N = N + M
-    arrayA.append(N)
-print(arrayA)
+# for _ in range(L-1):
+#     N += M
+#     arrayA.append(N)
+# print(arrayA)
+
+#print([num for num in range(N,N + M *  L, M)])
     
 
     
@@ -372,17 +374,98 @@ print(arrayA)
 # значения которых принадлежат заданному диапазону (т.е. не меньше 
 # заданного минимума и не больше заданного максимума)
 
-from random import randint
+# from random import randint
 
-n = int(input('Введите количество элементов массива:'))
-m = int(input('Введите нижний предел:'))
-l = int(input('Введите верхний предел:'))
-my_array = [randint(1, 10) for _ in range(n)]
-print(my_array)
-for i in range(0,n):
-    if my_array[i] > m and my_array[i] < l:
-        print("Индекс в массиве:",i)
+# n = int(input('Введите количество элементов массива:'))
+# m = int(input('Введите нижний предел:'))
+# l = int(input('Введите верхний предел:'))
+# my_array = [randint(1, 10) for _ in range(n)]
+# print(my_array)
+# for i in range(0,n):
+#     if my_array[i] > m and my_array[i] < l:
+#         print("Индекс в массиве:",i)
 
-        print('Значение элемента:',my_array[i])
-   # else:
-    #    print('Нет такого элемента ')
+#         print('Значение элемента:',my_array[i])
+#    # else:
+#     #    print('Нет такого элемента ')
+# from random import randint
+# def createArray(size):
+#     list_1 = [randint(-5, 9) for _ in range(size)]
+#     return list_1
+
+
+# def index(my_list):
+#     min_elem = int(input("input the first elements of the range: "))
+#     max_elem = int(input("input the second elements of the range: "))
+#     # for i in range(len(my_list)):
+#     # if min_elem <= my_list[i] <= max_elem:
+#     # print(i, end=" ")
+#     print([i for i in range(len(my_list)) if min_elem <= my_list[i] <= max_elem])
+
+
+# print()
+# num_size = int(input("input number of elements array: "))
+# my_list = createArray(num_size)
+# print(my_list)
+# index(my_list)
+'''
+Задача 34: Винни-Пух попросил Вас посмотреть, есть ли в его стихах ритм. Поскольку
+разобраться в его кричалках не настолько просто, насколько легко он их придумывает, Вам
+стоит написать программу. Винни-Пух считает, что ритм есть, если число слогов (т.е. число
+гласных букв) в каждой фразе стихотворения одинаковое. Фраза может состоять из одного
+слова, если во фразе несколько слов, то они разделяются дефисами. Фразы отделяются друг
+от друга пробелами. Стихотворение Винни-Пух вбивает в программу с клавиатуры. В ответе
+напишите “Парам пам-пам”, если с ритмом все в порядке и “Пам парам”, если с ритмом все не
+в порядке
+Ввод:                                  Вывод:
+пара-ра-рам рам-пам-папам па-ра-па-дам Парам пам-пам
+'''
+
+my_str = 'пара-ра-рам рам-пам-папам па-ра-па-дам'
+lists = my_str.split()
+print(lists)
+my_list =[]
+
+vowels = set('а у о ы и э я ю ё е')
+for list_1 in list:
+    count = 0
+    for letter in list_1:
+        if letter in vowels:
+            count +=1
+    my_list.append(count)
+print(my_list)
+if len(set(my_list)) == 1:
+    print('Парам пам-пам')
+else:
+    print('Пам парам')
+
+
+
+
+
+# Задача 36: Напишите функцию print_operation_table(operation, num_rows=6, num_columns=6),
+# которая принимает в качестве аргумента функцию, вычисляющую элемент по номеру строки и
+# столбца. Аргументы num_rows и num_columns указывают число строк и столбцов таблицы,
+# которые должны быть распечатаны. Нумерация строк и столбцов идет с единицы (подумайте,
+# почему не с нуля). Примечание: бинарной операцией называется любая операция, у которой
+# ровно два аргумента, как, например, у операции умножения.
+# Ввод:                                     Вывод:
+# print_operation_table(lambda x, y: x * y) 1 2 3 4 5 6
+#                                           2 4 6 8 10 12
+#                                           3 6 9 12 15 18
+#                                           4 8 12 16 20 24
+#                                           5 10 15 20 25 30
+#                                           6 12 18 24 30 36 
+
+
+def print_operation_table(operation, num_rows=6, num_columns=6):
+
+    table = [[operation(i, j) for j in range(1, num_columns+1)] for i in range(1, num_rows+1)]
+    x = num_rows
+    y = num_columns
+    for i in range(x):
+        for j in range(y): 
+            print(table[i][j], end=' ')
+        print()
+
+print_operation_table(lambda x, y: x * y)
